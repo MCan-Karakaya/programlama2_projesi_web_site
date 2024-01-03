@@ -1,0 +1,39 @@
+﻿@using System.Collections.Generic
+@using System.Web.Mvc
+@using Yemek_Tarif_Sitesi.Models
+@model Yemek_Tarif_Sitesi.Models.Comment
+
+<div>
+    <h2>Yorum Yap</h2>
+    @using (Html.BeginForm("AddComment", "Home"))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <label>İsim</label>
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label>Yorum</label>
+            @Html.TextAreaFor(model => model.Message, new { @class = "form-control" })
+        </div>
+
+        <button type="submit" class="btn btn-primary">Yorum Ekle</button>
+    }
+</div>
+
+<div id="comments">
+    <h2>Yorumlar</h2>
+    @if (TempData["Comments"] != null)
+    {
+        var comments = TempData["Comments"] as List<Comment>;
+        foreach (var c in comments)
+        {
+            <div>
+                <strong>@c.Name</strong>
+                <p>@c.Message</p>
+            </div>
+        }
+    }
+</div>

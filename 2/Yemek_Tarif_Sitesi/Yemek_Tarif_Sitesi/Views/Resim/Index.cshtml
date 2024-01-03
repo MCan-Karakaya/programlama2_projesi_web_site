@@ -1,0 +1,20 @@
+﻿@model Yemek_Tarif_Sitesi.Models.DosyaModel
+
+@{
+    ViewBag.Title = "Resim Yükleme";
+}
+
+<h2>Resim Yükleme</h2>
+
+@using (Html.BeginForm("DosyaYukleme", "Resim", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+        <label for="dosya">Resim Seç:</label>
+        <input type="file" name="Dosya" id="dosya" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Yükle</button>
+}
+
+<div>
+    @ViewBag.Message
+</div>
